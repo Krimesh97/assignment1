@@ -29,6 +29,12 @@ def get_word_list(file_path: str, encoding: str = 'utf-8') -> list:
 
 
 def create_files_and_directories(word_list: [list, tuple], out_folder_root: str):
+    """
+    Creating Directories Levels based on word characters and Files with content = 100 x word
+    :param word_list: [type:list, tuple] list of words for processing
+    :param out_folder_root: root output folder where directories are created
+    :return: pass
+    """
     curated_word_list = []
     for word in word_list:
         word = word.lower()

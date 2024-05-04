@@ -14,7 +14,6 @@ Assignment provided by Dr. Jedt for Saiitek Internship
 
 #####################
 
-
 ## Installation
 
 1. Install Python 3.10.11
