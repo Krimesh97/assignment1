@@ -2,3 +2,4 @@
 .idea
 resources/output
 resources/words_dictionary.db
+module/__pycache__

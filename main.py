@@ -4,7 +4,7 @@ import sys
 from module.file_folder_manipulation import get_word_list, create_files_and_directories
 from module.compression import apply_compression_pipeline
 from module.database import apply_db_pipeline
-
+from module.pdf_generation import apply_pdf_pipeline
 config_file_path = r"configs\config.ini"
 
 
@@ -29,6 +29,7 @@ def main(sys_argv):
     apply_compression_pipeline(output_folder)
 
     apply_db_pipeline(db_file=db_name, table_name=table_name, word_list=word_list)
+    apply_pdf_pipeline(config['Database'], config['PDF'])
 
 
 if __name__ == "__main__":

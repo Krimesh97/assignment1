@@ -92,6 +92,46 @@ def update_table_make_upper(db_connection: sqlite3.Connection, table_name: str):
         print("Failed to update table:", error)
 
 
+def get_word_list(db_connection: sqlite3.Connection, table_name: str):
+    """
+    Returns Word list from database
+    :param db_connection: connection to database
+    :param table_name: Table name for insertion of words
+
+    """
+    try:
+        cursor_obj = db_connection.cursor()
+        fetch_statement = """SELECT Word FROM {};""".format(table_name)
+        cursor_obj.execute(fetch_statement)
+        word_list = [row[0] for row in cursor_obj.fetchall()]
+        print("Successfully fetch word list from database")
+        cursor_obj.close()
+        return word_list
+
+    except sqlite3.Error as error:
+        print("Failed to retrieve word_list:", error)
+
+
+def connect_and_get_word_list(db_file: str, table_name: str):
+    """
+    Connects to database and returns Word list from database
+    :param db_file: database file
+    :param table_name: Table name for insertion of words
+    """
+
+    db_connection = setup_connection(db_file)
+    if db_connection is None:
+        print("Skipping Database Operations as connection was not established")
+        return
+
+    word_list = get_word_list(db_connection, table_name)
+
+    if db_connection:
+        db_connection.close()
+
+    return word_list
+
+
 def apply_db_pipeline(db_file: str, table_name: str, word_list: [list, tuple]):
     """
     Creates SQLite Database and Reports Word Analytics
