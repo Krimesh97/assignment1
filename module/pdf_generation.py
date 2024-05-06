@@ -1,4 +1,6 @@
 import os
+import time
+
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import A4
 
@@ -17,6 +19,7 @@ def generate_pdf(word_list: list, output_path: str | os.PathLike,
     :param max_lines: maximum no of words in single page
     :return:
     """
+    start_time = time.time()
     c = canvas.Canvas(output_path, pagesize=page_size)
 
     current_line = 0
@@ -39,6 +42,15 @@ def generate_pdf(word_list: list, output_path: str | os.PathLike,
     c.drawText(text_object)
     c.showPage()
     c.save()
+    end_time = time.time()
+    generated_time = end_time - start_time
+
+    # Calculate file size
+    file_size = os.path.getsize(output_path) / (1024)
+
+    print("PDF file generated successfully.")
+    print(f"File size: {file_size:.2f} KB")
+    print(f"Generated time: {generated_time:.2f} seconds")
 
 
 def apply_pdf_pipeline(database_config, pdf_config):

@@ -28,3 +28,9 @@ Assignment provided by Dr. Jedt for Saiitek Internship
 ## Running the software
 1. Run main.bat for Windows
 2. Run main.sh for Linux or MacOS
+
+## Outputs
+1. Directories
+2. Compressed Files
+2. Database File
+3. PDF file
