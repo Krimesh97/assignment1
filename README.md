@@ -20,3 +20,11 @@ Assignment provided by Dr. Jedt for Saiitek Internship
    - Download Python from [https://www.python.org/downloads](https://www.python.org/downloads).
    - Follow the installation instructions and make sure to add Python to the system environment variables during installation.
 
+2. Run setup file
+   - Run install_unix.sh for Linux and MacOS
+   - Run install_windows.bat for Windows
+
+
+## Running the software
+1. Run main.bat for Windows
+2. Run main.sh for Linux or MacOS
