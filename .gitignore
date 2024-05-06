@@ -1,3 +1,4 @@
 .venv
 .idea
 resources/output
+resources/words_dictionary.db
