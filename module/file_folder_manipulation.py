@@ -1,12 +1,13 @@
 import os
 import sys
 import re
+
 # import string
-
-
+# import enchant
 # word_checker = enchant.Dict("en_US")
 
-def get_word_list(file_path: str, encoding: str = 'utf-8') -> list:
+
+def get_word_list(file_path: str | os.PathLike, encoding: str = 'utf-8') -> list:
     """
     function to read words in a text file
     :param file_path: [type str] path of text file, the words in the text should be delimited by carriage return
@@ -28,13 +29,27 @@ def get_word_list(file_path: str, encoding: str = 'utf-8') -> list:
         sys.exit()
 
 
-def create_files_and_directories(word_list: [list, tuple], out_folder_root: str):
+def create_directories(out_folder_root: str | os.PathLike, directory_candidates: list):
+    """
+    Creates Directories a-z up to 2 levels
+    """
+    for level_one_dir in directory_candidates:
+        for level_two_dir in directory_candidates:
+            folder_path = os.path.join(out_folder_root, level_one_dir, level_two_dir)
+            os.makedirs(folder_path, exist_ok=True)
+
+
+def create_files_and_directories(word_list: list | tuple, out_folder_root: str | os.PathLike,
+                                 directory_candidates: list):
     """
     Creating Directories Levels based on word characters and Files with content = 100 x word
+    :param directory_candidates:  [type: list] list of directories to be created
     :param word_list: [type:list, tuple] list of words for processing
     :param out_folder_root: root output folder where directories are created
     :return: pass
     """
+    print("Creating Directories and files ...")
+    create_directories(out_folder_root, directory_candidates)
     curated_word_list = []
     for word in word_list:
         word = word.lower()
@@ -44,15 +59,13 @@ def create_files_and_directories(word_list: [list, tuple], out_folder_root: str)
         second_letter = alpha_only[1] if len(alpha_only) > 1 else ''
         out_file_name = word + '.txt'
         out_folder = os.path.join(out_folder_root, first_letter, second_letter)
-        os.makedirs(out_folder, exist_ok=True)
-
         out_file_path = os.path.join(out_folder, out_file_name)
 
         try:
             with open(out_file_path, "w") as file:
-                to_write = '\n'.join([word]*100)
+                to_write = '\n'.join([word] * 100)
                 file.write(to_write)
             curated_word_list.append(word)
-        except Exception:
-            print('error occured when writing files: ', word)
+        except Exception as error:
+            print('error occurred when writing files: ', word, ':', error)
     return curated_word_list
