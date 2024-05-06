@@ -3,7 +3,7 @@ import shutil
 from prettytable import PrettyTable
 
 
-def get_dir_size(path: str) -> float:
+def get_dir_size(path: str | os.PathLike) -> float:
     """
     Returns the size of target directory in KB
     :param path: [type: str] Path to target directory
@@ -19,7 +19,7 @@ def get_dir_size(path: str) -> float:
     return total
 
 
-def get_file_size(path: str) -> float:
+def get_file_size(path: str | os.PathLike) -> float:
     """
     Returns the size of target file in KB
     :param path: [type: str] Path to target file
@@ -28,7 +28,7 @@ def get_file_size(path: str) -> float:
     return os.path.getsize(path) / 1024
 
 
-def create_compression(path: str, out_path) -> float:
+def create_compression(path: str | os.PathLike, out_path: str | os.PathLike) -> float:
     """
     Creates compression file for input file
     :param path: Path to target file/folder
@@ -36,10 +36,10 @@ def create_compression(path: str, out_path) -> float:
     :return: size after compression
     """
     shutil.make_archive(out_path, 'zip', path)
-    return get_file_size(out_path+'.zip')
+    return get_file_size(out_path + '.zip')
 
 
-def apply_compression_pipeline(root_folder):
+def apply_compression_pipeline(root_folder: str | os.PathLike):
     """
     Creates compressed file for directories[a~z] inside root_folder and reports compression ratio
     :param root_folder: path to directory containing [a~z] folder created py processing dictionary
@@ -49,23 +49,28 @@ def apply_compression_pipeline(root_folder):
                      'u', 'v', 'w', 'x', 'y', 'z']
     target_folders = [os.path.basename(f.path) for f in os.scandir(root_folder) if
                       f.is_dir() and os.path.basename(f.path) in valid_folders]
-    original_size_dict = {}
-    original_size_dict['Alpahbet'] = {'Original Size(KB)', 'Compressed Size(KB)', 'Compression Ratio'}
+    original_size_dict = {'Alpahbet': {'Original Size(KB)', 'Compressed Size(KB)', 'Compression Ratio'}}
+
+    print('\n', '#' * 30)
     print('Reporting Folder Sizes')
+    print('#' * 30)
 
     for target_folder in target_folders:
         original_size = get_dir_size(os.path.join(root_folder, target_folder))
         original_size_dict[target_folder] = original_size
         print("'{alphabet}' -> {original_size} KB".format(alphabet=target_folder, original_size=original_size))
 
-    print('Compression Folders and Reporting Compression Ratio')
+    print('\n', '#' * 30)
+    print('Compressing Folders and Reporting Compression Ratio')
+    print('#' * 30)
+
     table = PrettyTable()
-    table.field_names = ['Alphabet', 'Original Size', 'Compressed Size', 'Compression Ratio']
+    table.field_names = ['Alphabet', 'Original Size (KB)', 'Compressed Size (KB)', 'Compression Ratio (%)']
     for target_folder in target_folders:
         target_folder_path = os.path.join(root_folder, target_folder)
         output_path = os.path.join(root_folder, target_folder)
 
         original_size = original_size_dict[target_folder]
         compressed_size = create_compression(target_folder_path, output_path)
-        table.add_row([target_folder,original_size, compressed_size, original_size / compressed_size])
+        table.add_row([target_folder, original_size, compressed_size, original_size / compressed_size])
     print(table)
