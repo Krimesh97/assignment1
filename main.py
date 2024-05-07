@@ -5,7 +5,7 @@ from module.file_folder_manipulation import get_word_list, create_files_and_dire
 from module.compression import apply_compression_pipeline
 from module.database import apply_db_pipeline
 from module.pdf_generation import apply_pdf_pipeline
-config_file_path = r"configs\config.ini"
+config_file_path = r"configs/config.ini"
 
 
 def main(sys_argv):

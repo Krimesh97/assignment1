@@ -26,6 +26,7 @@ Assignment provided by Dr. Jedt for Saiitek Internship
 
 
 ## Running the software
+** Please make sure you have the required permissions 
 1. Run main.bat for Windows
 2. Run main.sh for Linux or MacOS
 
