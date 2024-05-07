@@ -1,5 +1,8 @@
 .venv
 .idea
 resources/output
-resources/words_dictionary.db
 module/__pycache__
+resources/words_dictionary.db
+resources/word_list.pdf
+.idea/workspace.xml
+module/__pycache__/file_folder_manipulation.cpython-310.pyc
