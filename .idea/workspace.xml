@@ -4,15 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1ffdf830-a00e-4ec3-9815-7d2132887923" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Configs/config.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Configs/config.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Resources/curated_word_list.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/curated_word_list.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/install_windows.bat" beforeDir="false" afterPath="$PROJECT_DIR$/install_windows.bat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.bat" beforeDir="false" afterPath="$PROJECT_DIR$/main.bat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-    </list>
+    <list default="true" id="1ffdf830-a00e-4ec3-9815-7d2132887923" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
